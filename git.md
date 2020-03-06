@@ -56,8 +56,23 @@ $ git remote add origin 删除本地仓库与远程仓库的链接，origin可�
 ```
 * 代码提交
 ```
-$ git pull orign master 提交前先拉取
+$ git pull origin master 提交前先拉取
+$ git push origin master 提交代码
 ````
+#### 记一次提交错误
+##### 问题
+* 提交时出现了`fatal: refusing to merge unrelated histories`（拒绝合并不相关的历史）
+##### 分析
+* 出现这个问题的最主要原因还是在于本地仓库和远程仓库实际上是独立的两个仓库。假如我之前是直接clone的方式在本地建立起远程github仓库的克隆本地仓库就不会有这问题了。
+##### 解决
+* 在pull命令后紧接着使用--allow-unrelated-history,即`git pull origin master --allow-unrelated-histories`
+* 紧接着将本地仓库的提交推送到远程github仓库上，使用的命令是：
+`
+git push <远程主机名> <本地分支名>:<远程分支名>
+也就是
+git push origin master:master
+`
+
 ### git分支
 * git指针本质上是指向某一个版本的指针，仓库中有多少个这样的指针，就有多少个分支
 * git中的分支并不一定是版本关系树上的一个分支
