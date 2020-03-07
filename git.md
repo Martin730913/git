@@ -66,6 +66,7 @@ $ git push origin master 提交代码
 * 出现这个问题的最主要原因还是在于本地仓库和远程仓库实际上是独立的两个仓库。假如我之前是直接clone的方式在本地建立起远程github仓库的克隆本地仓库就不会有这问题了。
 ##### 解决
 * 在pull命令后紧接着使用--allow-unrelated-history,即`git pull origin master --allow-unrelated-histories`
+> 这个执行后以后不用加`--allow-unrelated-history`,也可以正常提交
 * 紧接着将本地仓库的提交推送到远程github仓库上，使用的命令是：
 `
 git push <远程主机名> <本地分支名>:<远程分支名>
