@@ -97,7 +97,7 @@ git branch
 ```
 git branch -d <name>
 ```
-##### 注意事项(test)
+##### 注意事项
 1. `HEAD`指向的分支不能删除，如果要删除需要把`HEAD`切换到别的分支
 2. 由于 Git 中的 branch 只是`commit`的一个引用，所以删除 branch 的操作只会删掉这个引用，并不会删除任何的 commit。
 3. 如果一个 commit 不在任何一个 branch 的「路径」上，(也许可以称为野生 commit？)，那么在一定时间后，它会被 Git 的回收机制删除掉。
