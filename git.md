@@ -68,14 +68,37 @@ $ git push origin master 提交代码
 * 在pull命令后紧接着使用--allow-unrelated-history,即`git pull origin master --allow-unrelated-histories`
 > 这个执行后以后不用加`--allow-unrelated-history`,也可以正常提交
 * 紧接着将本地仓库的提交推送到远程github仓库上，使用的命令是：
-`
+```
 git push <远程主机名> <本地分支名>:<远程分支名>
-也就是
+也就是  
 git push origin master:master
-`
+```
 
 ### git分支
-* git指针本质上是指向某一个版本的指针，仓库中有多少个这样的指针，就有多少个分支
-* git中的分支并不一定是版本关系树上的一个分支
-* 有一个名为HEAD的特殊指针，一般不算做分支，当前在修改哪个分支head就指向哪个分支
-* 切换分支后工作目录中的文件随之会改变
+
+##### 分支创建
+```
+git branch <name>
+```
+#### 切换分支
+```
+git checkout <name>
+```
+> 新建的分支并不会自动切换，这时`HEAD`仍然是指向`master`的，需要手动切换，切换后`HEAD`就指向新建的分支了
+##### 创建并切换分支
+```
+git checkout -b <name>
+```
+##### 删除分支
+```
+git branch -d <name>
+```
+##### 注意事项
+1. `HEAD`指向的分支不能删除，如果要删除需要把`HEAD`切换到别的分支
+2. 由于 Git 中的 branch 只是`commit`的一个引用，所以删除 branch 的操作只会删掉这个引用，并不会删除任何的 commit。
+3. 如果一个 commit 不在任何一个 branch 的「路径」上，(也许可以称为野生 commit？)，那么在一定时间后，它会被 Git 的回收机制删除掉。
+4. 出于安全考虑，没有被合并到 master 过的 branch 在删除时会失败(因为怕你误删掉「未完成」的 branch 啊)
+> 这种情况如果你确认是要删除这个 branch （例如某个未完成的功能被团队确认永久毙掉了，不再做了），可以把 -d 改成 -D，小写换成大写，就能删除了。
+5. git分支本质上是指向某一个版本的指针，仓库中有多少个这样的指针，就有多少个分支
+6. 有一个名为HEAD的特殊指针，一般不算做分支，当前在修改哪个分支head就指向哪个分支
+7. 切换分支后工作目录中的文件随之会改变
