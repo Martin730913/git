@@ -89,6 +89,10 @@ git checkout <name>
 ```
 git checkout -b <name>
 ```
+##### 查看自己在哪个分支
+```
+git branch
+```
 ##### 删除分支
 ```
 git branch -d <name>
